@@ -1,0 +1,13 @@
+streamlit
+requests
+pydantic
+python-dotenv
+pypdf
+groq
+transformers
+langchain
+langchain-community
+qdrant-client
+langchain-groq
+tensorflow
+tf-keras
