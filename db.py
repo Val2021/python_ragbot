@@ -14,7 +14,7 @@ client = QdrantClient(url=qdrant_url)
 collection_name = "python_data_doc"
 
 # Vector configurations
-vectors_config = VectorParams(size=768, distance="Cosine")  # Adjust size and distance metric as needed
+vectors_config = VectorParams(size=384, distance="Cosine")  # Adjust size and distance metric as needed
 
 # Create or recreate the collection
 client.recreate_collection(
