@@ -39,3 +39,4 @@ def load_dataset():
         logging.info(f"Chunk {i+1}: {chunk[:500]}...\n")
 
     return chunks
+
