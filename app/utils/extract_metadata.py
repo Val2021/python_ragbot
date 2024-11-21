@@ -6,8 +6,6 @@ import re
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 # Load the PDF document
-loader = PyPDFLoader('dataset/python_doc_3.13.pdf')
-data = loader.load()
 
 
 def clean_index(index):
@@ -47,7 +45,7 @@ def clean_index(index):
     return cleaned_index
 
 
-def extract_title_page():
+def extract_title_page(data):
     """
     Extracts titles and page numbers from the "Contents" section of a PDF.
 
@@ -55,13 +53,13 @@ def extract_title_page():
         list: A list of dictionaries containing "title" and "page" for each index entry.
         If no entries are found, returns None.
     """
-    full_text = " ".join([doc.page_content for doc in data])
+    full_text = " ".join(data)
 
     # Search for the "Contents" section in the text
     contents_match = re.search(r"CONTENTS(\s\w.+)", full_text, re.DOTALL | re.IGNORECASE)
     if contents_match:
         contents_text = contents_match.group(1)
-        logging.info(f"Extracted text from the Contents section: {contents_text[:500]}")
+        # logging.info(f"Extracted text from the Contents section: {contents_text[:500]}")
 
         # Handle line breaks within titles
         contents_text = re.sub(r"(?<=[a-zA-Z])\n(?=[a-zA-Z])", " ", contents_text)
@@ -74,7 +72,7 @@ def extract_title_page():
 
             # Clean the index
             index = clean_index(index)
-            logging.info(f"Cleaned index titles: {index}")
+            # logging.info(f"Cleaned index titles: {index}")
             return index
         else:
             logging.warning("No titles found in the index.")
