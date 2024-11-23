@@ -9,5 +9,6 @@ langchain
 langchain-community
 qdrant-client
 langchain-groq
+langchain-qdrant
 tensorflow
 tf-keras
